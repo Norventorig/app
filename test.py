@@ -86,9 +86,6 @@ while True:
 
     variant = int(input('Выбор:'))
 
-    if variant == "0":
-        break
-
     if variant == 1:
         list_keys = [x for x in words.keys()]
         list_keys = list_keys[-1:-61:-1] + list_keys[0:60:1]
@@ -110,7 +107,7 @@ while True:
         new_test(user_blocks, words, answers)
         print("\n" * 2)
 
-    else:
+    elif variant == 4:
         new_dictionary = "{\n"
         list_values = [input("Английское слово ({}): ".format(i_count + 1)) for i_count in range(15)]
         print("\n" * 10)
@@ -133,3 +130,9 @@ while True:
         file_opener = open("dict.txt", 'w', encoding="windows-1251")
         file_opener.write(new_dictionary)
         print("\n" * 2)
+
+    else:
+        break
+
+# Добавить режим отслеживания и составления статистики ошибок.
+# Добавить режим распознавания опечаток и настоящих ошибок.
