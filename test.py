@@ -41,11 +41,14 @@ def new_test(blocks, chief_dict, correct_answers):
         print("2){0}".format(value[1]))
         print("3){0}".format(value[2]))
         print("4){0}".format(value[3]))
-        answer = int(input("Вариант: "))
+        answer = input("Вариант: ")
         print("\n" * 2)
 
-        if chief_dict[value[answer - 1]] != key:
-            errors.append((key, correct_answers[key], value[answer - 1]))
+        if answer != '1' or answer != '2' or answer != '3' or answer != '4':
+            errors.append((key, correct_answers[key], ''))
+
+        elif chief_dict[value[int(answer) - 1]] != key:
+            errors.append((key, correct_answers[key], value[int(answer) - 1]))
 
     print("\n" * 100)
     print("+{:-^60}+{:-^60}+{:-^60}+".format('-', '-', '-'))
@@ -53,6 +56,7 @@ def new_test(blocks, chief_dict, correct_answers):
     print("+{:-^60}+{:-^60}+{:-^60}+".format('-', '-', '-'))
     for i_error in errors:
         print("|{: ^60}|{: ^60}|{: ^60}|".format(i_error[0], i_error[1], i_error[2]))
+    print("+{:-^60}+{:-^60}+{:-^60}+".format('-', '-', '-'))
 
 
 def standard_test(keys, dictionary):
@@ -72,6 +76,7 @@ def standard_test(keys, dictionary):
     print("+{:-^60}+{:-^60}+{:-^60}+".format('-', '-', '-'))
     for i_error in errors:
         print("|{: ^60}|{: ^60}|{: ^60}|".format(i_error[0], i_error[1], i_error[2]))
+    print("+{:-^60}+{:-^60}+{:-^60}+".format('-', '-', '-'))
 
 
 file_opener = open("dict.txt", 'r', encoding="windows-1251")
