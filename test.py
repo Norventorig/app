@@ -135,7 +135,7 @@ def new_test(blocks, chief_dict, correct_answers):
         answer = input("Вариант: ")
         print("\n" * 2)
 
-        if answer != '1' or answer != '2' or answer != '3' or answer != '4':
+        if answer != '1' and answer != '2' and answer != '3' and answer != '4':
             errors.append((correct_answers[key], key, ''))
 
         elif chief_dict[value[int(answer) - 1]] != key:
