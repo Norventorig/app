@@ -9,16 +9,16 @@ def main_choice(words):
     print('Режим наоборот(3)')
     print('Введение новых слов (4)')
 
-    variant = int(input('Выбор:'))
+    variant = input('Выбор:')
 
-    if variant == 1:
+    if variant == '1':
         list_keys = [x for x in words.keys()]
         list_keys = list_keys[-1:-61:-1] + list_keys[0:60:1]
         random.shuffle(list_keys)
         standard_test(list_keys, words)
         print("\n" * 2)
 
-    elif variant == 2:
+    elif variant == '2':
         list_keys = [x for x in words.keys()]
         list_keys = list_keys[-61:-181:-1]
         random.shuffle(list_keys)
@@ -26,13 +26,13 @@ def main_choice(words):
         standard_test(list_keys, words)
         print("\n" * 2)
 
-    elif variant == 3:
+    elif variant == '3':
         answers, tru_val, fal_val, keys = input_preparation(words)
         user_blocks = blocks_creation(tru_val, fal_val, keys)
         new_test(user_blocks, words, answers)
         print("\n" * 2)
 
-    elif variant == 4:
+    elif variant == '4':
         new_dictionary = "{\n"
         list_values = [input("Английское слово ({}): ".format(i_count + 1)) for i_count in range(15)]
         print("\n" * 10)
