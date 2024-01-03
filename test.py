@@ -222,3 +222,13 @@ text = file_opener.read()
 dictionary = eval(text)
 text = file_opener.close()
 main_choice(dictionary)
+
+# prejudiced -- предвзятое
+# exhilarating -- заставляющее чувствовать радость и бодрость
+# oblivion -- забвение
+# custody -- опека
+# establish -- основать
+# demand for -- требование чего то, потребность в
+# independence - - независимость
+# interrogate -- допрашивать
+# responsibility -- ответственность
