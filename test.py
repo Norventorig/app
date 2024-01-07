@@ -1,10 +1,10 @@
 import random
 
 
-def main_choice(words):
+def main_choice(words, special_words):
     print()
     print('Остановить программу (0)')
-    print('120 слов (1)')
+    print('60 слов (1)')
     print('Вперемешку 60 слов (2)')
     print('Режим наоборот(3)')
     print('Введение новых слов (4)')
@@ -13,7 +13,7 @@ def main_choice(words):
 
     if variant == '1':
         list_keys = [x for x in words.keys()]
-        list_keys = list_keys[-1:-61:-1] + list_keys[0:60:1]
+        list_keys = list_keys[-1:-31:-1] + list_keys[0:30:1]
         random.shuffle(list_keys)
         standard_test(list_keys, words)
         print("\n" * 2)
@@ -33,27 +33,40 @@ def main_choice(words):
         print("\n" * 2)
 
     elif variant == '4':
-        new_dictionary = "{\n"
-        list_values = [input("Английское слово ({}): ".format(i_count + 1)) for i_count in range(15)]
+        list_values = [input("Английское слово ({}): ".format(i_count + 1)) for i_count in range(5)]
         print("\n" * 10)
         list_keys = [input("Перевод {}: ".format(key)) for key in list_values]
 
         dict_add = dict(zip(list_keys, list_values))
         words.update(dict_add)
+        special_words.update(dict_add)
 
-        for _ in range(15):
+        random.shuffle(list_keys)
+        standard_test(list_keys, dict_add)
+
+        for _ in range(5):
             words.pop(next(iter(words)))
 
+        new_dictionary = "{\n"
         for i_key, i_value in words.items():
             new_dictionary += '"{}": "{}",\n'.format(i_key, i_value)
         new_dictionary += '}'
         print('\n' * 10)
 
-        random.shuffle(list_keys)
-        standard_test(list_keys, dict_add)
-
         file_opener = open("dict.txt", 'w', encoding="windows-1251")
         file_opener.write(new_dictionary)
+        file_opener.close()
+        print("\n" * 2)
+
+        new_dictionary = "{\n"
+        for i_key, i_value in special_words.items():
+            new_dictionary += '"{}": "{}",\n'.format(i_key, i_value)
+        new_dictionary += '}'
+        print('\n' * 10)
+
+        file_opener = open("Резервный словарь.txt", 'w', encoding="windows-1251")
+        file_opener.write(new_dictionary)
+        file_opener.close()
         print("\n" * 2)
 
     else:
@@ -88,7 +101,7 @@ def main_choice(words):
 
         return
 
-    main_choice(words)
+    main_choice(words, special_words)
 
 
 def input_preparation(chief_dict):
@@ -221,14 +234,10 @@ file_opener = open("dict.txt", 'r', encoding="windows-1251")
 text = file_opener.read()
 dictionary = eval(text)
 text = file_opener.close()
-main_choice(dictionary)
 
-# prejudiced -- предвзятое
-# exhilarating -- заставляющее чувствовать радость и бодрость
-# oblivion -- забвение
-# custody -- опека
-# establish -- основать
-# demand for -- требование чего то, потребность в
-# independence - - независимость
-# interrogate -- допрашивать
-# responsibility -- ответственность
+file_opener = open("Резервный файл.txt", 'r', encoding="windows-1251")
+text = file_opener.read()
+special_dictionary = eval(text)
+text = file_opener.close()
+
+main_choice(dictionary, special_dictionary)
