@@ -6,8 +6,7 @@ def main_choice(words, special_words):
     print('Остановить программу (0)')
     print('60 слов (1)')
     print('Вперемешку 60 слов (2)')
-    print('Режим наоборот(3)')
-    print('Введение новых слов (4)')
+    print('Введение новых слов (3)')
 
     variant = input('Выбор:')
 
@@ -20,19 +19,13 @@ def main_choice(words, special_words):
 
     elif variant == '2':
         list_keys = [x for x in words.keys()]
-        list_keys = list_keys[-61:-181:-1]
+        list_keys = list_keys[-31:-211:-1]
         random.shuffle(list_keys)
         list_keys = list_keys[-1:-61:-1]
         standard_test(list_keys, words)
         print("\n" * 2)
 
     elif variant == '3':
-        answers, tru_val, fal_val, keys = input_preparation(words)
-        user_blocks = blocks_creation(tru_val, fal_val, keys)
-        new_test(user_blocks, words, answers)
-        print("\n" * 2)
-
-    elif variant == '4':
         list_values = [input("Английское слово ({}): ".format(i_count + 1)) for i_count in range(5)]
         print("\n" * 10)
         list_keys = [input("Перевод {}: ".format(key)) for key in list_values]
@@ -64,7 +57,7 @@ def main_choice(words, special_words):
         new_dictionary += '}'
         print('\n' * 10)
 
-        file_opener = open("Резервный словарь.txt", 'w', encoding="windows-1251")
+        file_opener = open("Резервный файл.txt", 'w', encoding="windows-1251")
         file_opener.write(new_dictionary)
         file_opener.close()
         print("\n" * 2)
@@ -102,59 +95,6 @@ def main_choice(words, special_words):
         return
 
     main_choice(words, special_words)
-
-
-def input_preparation(chief_dict):
-    correct_answers = {}
-    true_values = [x for x in chief_dict.keys()][-1:-61:-1]
-    false_values = [x for x in chief_dict.keys()][-61:-241:-1]
-    random.shuffle(false_values)
-    user_keys = [chief_dict[x] for x in true_values]
-
-    for key, value in chief_dict.items():
-        correct_answers[value] = key
-
-    return correct_answers, true_values, false_values, user_keys
-
-
-def blocks_creation(true_values, false_values, user_keys):
-    mini_blocks = []
-    blocks = {}
-
-    for i_index in range(60):
-        mini_blocks.append(
-            [true_values[i_index], false_values[i_index], false_values[i_index + 1], false_values[i_index + 2]])
-        random.shuffle(mini_blocks[i_index])
-        mini_blocks[i_index].insert(0, user_keys[i_index])
-    random.shuffle(mini_blocks)
-
-    for i_list in mini_blocks:
-        blocks[i_list[0]] = (i_list[1], i_list[2], i_list[3], i_list[4])
-
-    return blocks
-
-
-def new_test(blocks, chief_dict, correct_answers):
-    errors = []
-    count = 0
-
-    for key, value in blocks.items():
-        count += 1
-        print("\t" * 14, key, "СЛОВО НОМЕР {}".format(count))
-        print("1){0}".format(value[0]))
-        print("2){0}".format(value[1]))
-        print("3){0}".format(value[2]))
-        print("4){0}".format(value[3]))
-        answer = input("Вариант: ")
-        print("\n" * 2)
-
-        if answer != '1' and answer != '2' and answer != '3' and answer != '4':
-            errors.append((correct_answers[key], key, ''))
-
-        elif chief_dict[value[int(answer) - 1]] != key:
-            errors.append((correct_answers[key], key, value[int(answer) - 1]))
-
-    errors_analysis(errors)
 
 
 def standard_test(keys, dictionary):
@@ -231,13 +171,11 @@ def stats(info, count=1):
 
 
 file_opener = open("dict.txt", 'r', encoding="windows-1251")
-text = file_opener.read()
-dictionary = eval(text)
-text = file_opener.close()
+dictionary = eval(file_opener.read())
+file_opener.close()
 
 file_opener = open("Резервный файл.txt", 'r', encoding="windows-1251")
-text = file_opener.read()
-special_dictionary = eval(text)
-text = file_opener.close()
+special_dictionary = eval(file_opener.read())
+file_opener.close()
 
 main_choice(dictionary, special_dictionary)
