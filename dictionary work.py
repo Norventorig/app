@@ -2,7 +2,7 @@ with open('Резервный файл.txt', 'r', encoding="windows-1251") as fi
     dictionary = eval(file_reader.read())
 
 with open('Резервный файл.txt', 'w', encoding="windows-1251") as file_adder:
-    list_values = [input("Английское слово ({}): ".format(i_count + 1)) for i_count in range(10)]
+    list_values = [input("Английское слово ({}): ".format(i_count + 1)) for i_count in range(15)]
     print("\n" * 10)
     list_keys = [input("Перевод {}: ".format(key)) for key in list_values]
 
