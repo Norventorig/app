@@ -9,6 +9,7 @@ def main_choice(words, special_words):
     print('Введение новых слов (3)')
 
     variant = input('Выбор:')
+    print('\n'*2)
 
     if variant == '1':
         list_keys = [x for x in words.keys()]
@@ -44,53 +45,41 @@ def main_choice(words, special_words):
         for i_key, i_value in words.items():
             new_dictionary += '"{}": "{}",\n'.format(i_key, i_value)
         new_dictionary += '}'
-        print('\n' * 10)
 
         file_opener = open("dict.txt", 'w', encoding="windows-1251")
         file_opener.write(new_dictionary)
         file_opener.close()
-        print("\n" * 2)
 
         new_dictionary = "{\n"
         for i_key, i_value in special_words.items():
             new_dictionary += '"{}": "{}",\n'.format(i_key, i_value)
         new_dictionary += '}'
-        print('\n' * 10)
 
         file_opener = open("Резервный файл.txt", 'w', encoding="windows-1251")
         file_opener.write(new_dictionary)
         file_opener.close()
-        print("\n" * 2)
 
     else:
-        file_opener = open('statistics.txt', 'r', encoding="windows-1251")
-        text = file_opener.read()
-        stat_res = text
-        text = file_opener.close()
+        with open('conter.txt', 'r', encoding='windows-1251') as counter_reader:
+            count = counter_reader.read()
 
-        file_opener = open('counter.txt', 'r', encoding="windows-1251")
-        text = file_opener.read()
-        count = text
-        text = file_opener.close()
+        with open('statistics.txt', 'r', encoding="windows-1251") as statistic_reader:
+            stat_res = statistic_reader.read()
 
-        print()
         print("Статистика за последние {} использований:".format(count))
         print(stat_res)
 
         answer = input("Хотите очистить статистику (1 - да, enter - нет)? ")
         if answer == '1':
 
-            file_opener = open('statistics.txt', 'w', encoding="windows-1251")
-            file_opener.write('')
-            file_opener.close()
+            with open('statistics.txt', 'w', encoding="UTF-8") as statistic_reset:
+                statistic_reset.write('')
 
-            file_opener = open('errors.txt', 'w', encoding="windows-1251")
-            file_opener.write('{}')
-            file_opener.close()
+            with open('errors.txt', 'w', encoding="UTF-8") as errors_reset:
+                errors_reset.write('{}')
 
-            file_opener = open('counter.txt', 'w', encoding="windows-1251")
-            file_opener.write('0')
-            file_opener.close()
+            with open('counter.txt', 'w', encoding="UTF-8") as counter_reset:
+                counter_reset.write("0")
 
         return
 
@@ -108,74 +97,46 @@ def standard_test(keys, dictionary):
         if answer != dictionary[word]:
             errors.append((dictionary[word], word, answer))
 
-    errors_analysis(errors)
+    with open('counter.txt', 'r+', encoding='UTF-8') as counter_adder:
+        count = int(counter_adder.read())
+        counter_adder.write(str(count + 1))
+
+    errors_stats(errors)
 
 
-def errors_analysis(all_errors):
-    true_errors = []
-    print("\n" * 100)
-    for i_error in all_errors:
-        print("{} -- {} !- {}".format(i_error[0], i_error[1], i_error[2]), end=' ')
-        control_result = input("Действительная ошибка? (пробел - да, enter - нет): ")
+def errors_stats(errors_list):
+    with open('errors.txt', 'r', encoding='UTF-8') as errors_reader:
+        dict_errors = eval(errors_reader.read())
 
-        if control_result == ' ':
-            true_errors.append(i_error[0])
+    for i in errors_list:
 
-    errors_stats(true_errors)
+        if i[1] in dict_errors.keys():
+            dict_errors[i[1]] += 1
 
-
-def errors_stats(info):
-    file_opener = open("errors.txt", 'r', encoding="windows-1251")
-    dictionary = file_opener.read()
-    text = eval(dictionary)
-    dictionary = file_opener.close()
-
-    for i_word in info:
-        if i_word in text:
-            text[i_word] += 1
         else:
-            text[i_word] = 1
+            dict_errors[i[1]] = 1
 
-    file_opener = open("errors.txt", 'w', encoding="windows-1251")
-    file_opener.write(str(text))
-    file_opener.close()
-
-    stats(text)
+    stats(dict_errors)
 
 
-def stats(info, count=1):
-    error_counter = 0
-    statistic = ''
+def stats(errors_amount):
+    errors_counter = 0
+    statistic = {}
 
-    for i_count in info.values():
-        error_counter += i_count
+    for i_amount in errors_amount.values():
+        errors_counter += i_amount
 
-    unprepared_stats = [[i_word, round(i_count / error_counter * 100, 2)] for i_word, i_count in info.items()]
-    unprepared_stats.sort()
+    for i_error, i_amount in errors_amount.items():
+        statistic[i_error] = "{}".format(round((i_amount / errors_counter) * 100, 1))
 
-    for i_stat in unprepared_stats:
-        statistic += '"{}" - {}%\n'.format(i_stat[0], i_stat[1])
-
-    file_opener = open('statistics.txt', 'w', encoding="windows-1251")
-    file_opener.write(statistic)
-    file_opener.close()
-
-    file_opener = open("counter.txt", 'r', encoding="windows-1251")
-    text = file_opener.read()
-    previous_count = int(text)
-    text = file_opener.close()
-
-    file_opener = open('counter.txt', 'w', encoding="windows-1251")
-    file_opener.write(str(previous_count + count))
-    file_opener.close()
+    with open("statistic.txt", 'w', encoding="UTF-8") as statistic_writer:
+        statistic_writer.write(str(statistic))
 
 
-file_opener = open("dict.txt", 'r', encoding="windows-1251")
-dictionary = eval(file_opener.read())
-file_opener.close()
+with open("dict.txt", 'r', encoding="windows-1251") as file_reader:
+    main_dictionary = eval(file_reader.read())
 
-file_opener = open("Резервный файл.txt", 'r', encoding="windows-1251")
-special_dictionary = eval(file_opener.read())
-file_opener.close()
+with open("Резервный файл.txt", 'r', encoding="windows-1251") as file_reader:
+    special_dictionary = eval(file_reader.read())
 
-main_choice(dictionary, special_dictionary)
+main_choice(main_dictionary, special_dictionary)
