@@ -85,9 +85,13 @@ def standard_test(keys, dictionary):
         if answer != dictionary[word]:
             errors.append((dictionary[word], word, answer))
 
-    print('\n', ' '*83, 'ОШИБКИ:', ' '*83, '\n')
-    for i_error in errors:
-        print("{} == {} !=! {}".format(i_error[1], i_error[0], i_error[2]))
+    if not errors:
+        print('\n', ' ' * 81, 'Нет ошибок:', ' ' * 81, '\n')
+
+    else:
+        print('\n', ' '*83, 'ОШИБКИ:', ' '*83, '\n')
+        for i_error in errors:
+            print("{} == {} !=! {}".format(i_error[1], i_error[0], i_error[2]))
 
     with open('counter.txt', 'r', encoding='UTF-8') as counter_reader:
         count = int(counter_reader.read())
@@ -163,4 +167,3 @@ with open("Резервный файл.txt", 'r', encoding="windows-1251") as fi
     special_dictionary = eval(file_reader.read())
 
 main_choice(main_dictionary, special_dictionary)
-3
