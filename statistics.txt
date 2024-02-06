@@ -1,1 +1,1 @@
-{'trample': '5.9', 'unaffected': '5.9', 'count on': '5.9', 'reliable': '5.9', 'perhaps': '5.9', 'employment': '5.9', 'wherever': '5.9', 'specifically': '5.9', 'beguile smbd of smth': '5.9', 'skittish': '5.9', 'undependable': '5.9', 'elude': '5.9', 'vaporize': '5.9', 'apartheid': '5.9', 'sewer': '5.9', 'exhilarating': '5.9', 'expel': '5.9'}
+{'figure smth out': '25.0', 'consist of': '25.0', 'elude': '25.0', 'expel': '25.0'}
