@@ -1,1 +1,1 @@
-{'figure smth out': '25.0', 'consist of': '25.0', 'elude': '25.0', 'expel': '25.0'}
+{'figure smth out': '10.0', 'consist of': '10.0', 'elude': '10.0', 'expel': '10.0', 'amateur': '10.0', 'in summation': '10.0', 'rupture': '10.0', 'amuse': '10.0', 'spare': '10.0', 'sugar-coat': '10.0'}
