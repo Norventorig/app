@@ -1,1 +1,1 @@
-{'figure smth out': '14.3', 'indifferent': '14.3', 'fabulous': '14.3', 'greed': '14.3', 'elude': '14.3', 'expel': '14.3', 'warp': '14.3'}
+{'figure smth out': '10.0', 'indifferent': '10.0', 'fabulous': '10.0', 'greed': '10.0', 'elude': '10.0', 'expel': '10.0', 'warp': '10.0', 'specimen': '10.0', 'heist': '10.0', 'more often than not': '10.0'}
