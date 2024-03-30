@@ -1,1 +1,1 @@
-{'figure smth out': 1, 'indifferent': 1, 'fabulous': 1, 'greed': 1, 'elude': 1, 'expel': 1, 'warp': 1, 'specimen': 1, 'heist': 1, 'more often than not': 1, 'research': 1, 'speculation': 1, 'apprehend': 1}
+{'figure smth out': 1, 'indifferent': 1, 'fabulous': 1, 'greed': 1, 'elude': 1, 'expel': 1, 'warp': 1, 'specimen': 1, 'heist': 1, 'more often than not': 1, 'research': 1, 'speculation': 1, 'apprehend': 1, 'predictable': 1, 'contribute': 1, 'befall': 1, 'shrink': 1}
