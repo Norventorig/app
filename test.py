@@ -64,10 +64,12 @@ def main_choice(words, special_words):
             count = counter_reader.read()
 
         with open('statistics.txt', 'r', encoding="windows-1251") as statistic_reader:
-            stat_res = statistic_reader.read()
+            stat_res = eval(statistic_reader.read())
 
-        print("Статистика за последние {} использований:".format(count))
-        print(stat_res)
+        print("Статистика за последние {} использований:\n".format(count))
+
+        for i_key, i_value in stat_res.items():
+            print("{word} - ({stat})".format(word=i_key, stat_res=i_value))
 
         return
 
@@ -151,7 +153,7 @@ def stats(errors_amount):
         errors_counter += i_amount
 
     for i_error, i_amount in errors_amount.items():
-        statistic[i_error] = "{}".format(round((i_amount / errors_counter) * 100, 1))
+        statistic[i_error] = '{}%'.format(round((i_amount / errors_counter) * 100, 1))
 
     with open("statistics.txt", 'w', encoding="UTF-8") as statistic_writer:
         statistic_writer.write(str(statistic))
