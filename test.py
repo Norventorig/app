@@ -134,7 +134,7 @@ def errors_stats(errors_list):
 
     for i in errors_list:
 
-        if i[1] in dict_errors.keys():
+        if i[0] in dict_errors.keys():
             dict_errors[i[0]] += 1
 
         else:
