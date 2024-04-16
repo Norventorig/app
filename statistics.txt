@@ -1,1 +1,1 @@
-{'figure smth out': '4.8', 'indifferent': '4.8', 'fabulous': '4.8', 'greed': '4.8', 'elude': '4.8', 'expel': '4.8', 'warp': '4.8', 'specimen': '4.8', 'heist': '4.8', 'more often than not': '4.8', 'research': '4.8', 'speculation': '4.8', 'apprehend': '4.8', 'predictable': '4.8', 'contribute': '4.8', 'befall': '4.8', 'shrink': '4.8', 'convince': '4.8', 'apparently': '4.8', 'relieve': '4.8', 'i beg your pardon': '4.8'}
+{'figure smth out': '20.0%', 'fabulous': '20.0%', 'greed': '20.0%', 'warp': '20.0%', 'shrink': '20.0%'}
