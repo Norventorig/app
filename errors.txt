@@ -1,1 +1,1 @@
-{'figure smth out': 1, 'fabulous': 1, 'greed': 1, 'warp': 1, 'shrink': 1}
+{'figure smth out': 2, 'fabulous': 1, 'greed': 1, 'warp': 1, 'shrink': 1, 'i beg your pardon': 1, 'responsibility': 1, 'oppose': 1, 'vaporize': 1, 'pretentious': 1, 'independence': 1, 'slip': 1, 'outnumber': 1, 'slutty': 1, 'a few more of those': 1, 'accountable': 1, 'rip': 1, 'heads-up': 1, 'handle': 1, "it can't be worth the risk": 1, 'errand': 1, 'demand for': 1}
