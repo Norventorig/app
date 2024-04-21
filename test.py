@@ -68,8 +68,10 @@ def main_choice(words, special_words):
 
         print("Статистика за последние {} использований:\n".format(count))
 
+        count = 0
         for i_key, i_value in stat_res.items():
-            print("{word} - ({stat_res})".format(word=i_key, stat_res=i_value))
+            count += 1
+            print("{count}) {word} - ({stat_res})".format(count=count, word=i_key, stat_res=i_value))
 
         return
 
